@@ -25,15 +25,12 @@ public class ClearJobRepositoryCommandLineRunner implements CommandLineRunner {
     
     @Autowired
     private JobRepository jobRepository;
-    
-    @Autowired
-    private DataSource dataSource;
 
     @Override
     public void run(String... args) throws Exception {
         logger.info("clearing job repository");
         
-        JobRepositoryTestUtils testUtils = new JobRepositoryTestUtils(jobRepository, dataSource);
+        JobRepositoryTestUtils testUtils = new JobRepositoryTestUtils(jobRepository);
         testUtils.removeJobExecutions();
     }
     
